@@ -1,0 +1,77 @@
+
+<div *ngIf="selectedMedico">
+  <app-title [titleVar]="'Médico ID: ' + selectedMedico.id"></app-title>
+  <br>
+
+<form [formGroup]="medicoForm" (submit)="submit()">
+  <div class="form-group">
+    <label for="formGroupExampleInput" class="form-label">Nome</label>
+    <input type="text" formControlName="nome" class="form-control"  >
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="form-label">Especialização</label>
+    <input type="text" formControlName="especialidade"  class="form-control" >
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput" class="form-label">CRM</label>
+    <input type="text" formControlName="crm" class="form-control"  >
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="form-label">Telefone</label>
+    <input type="text" formControlName="telefone"  class="form-control" >
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-outline-dark" [disabled]="!medicoForm.valid">Enviar</button>
+    <button class="btn btn-outline-dark" (click)="back()">Voltar</button>
+  </div>
+</form>
+
+
+</div>
+<div *ngIf="!selectedMedico">
+  <app-title [titleVar]="titleMedico"></app-title>
+  <p>Nenhum médico selecionado</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Especialização</th>
+        <th scope="col">CRM</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medico of medicos" >
+        <th scope="row">{{medico.id}}</th>
+        <td>{{medico.nome}}</td>
+        <td>{{medico.especialidade}}</td>
+        <td>{{medico.crm}}</td>
+        <td>{{medico.telefone}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-outline-dark" (click)="openModal(template)">Visualizar</button>
+            <button class="btn btn-outline-dark" (click)="selectMedico(medico)">Editar</button>
+            <button class="btn btn-outline-dark" (click)="deleteMedico(medico.id)">Excluir</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-dark" (click)="modalRef.hide()">Fechar</button>
+  </div>
+</ng-template>
+
+

@@ -1,0 +1,49 @@
+<div *ngIf="selectedCidade">
+  <app-title [titleVar]="'Cidade ID: ' + selectedCidade.id"></app-title>
+  <br>
+<form [formGroup]="cidadeForm" (submit)="submit()">
+  <div class="form-group">
+    <label for="formGroupExampleInput" class="form-label">Nome</label>
+    <input type="text" formControlName="nome" class="form-control"  >
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="form-label">Estado</label>
+    <input type="text" formControlName="estado"  class="form-control" >
+  </div>
+  <div class="btn-group">
+  <button class="btn btn-outline-dark" [disabled]="!cidadeForm.valid">Enviar</button>
+  <button class="btn btn-outline-dark" (click)="back()">Voltar</button>
+  </div>
+</form>
+</div>
+<div *ngIf="!selectedCidade">
+  <app-title [titleVar]="titleCidade"></app-title>  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cidade of cidades">
+        <th scope="row">{{cidade.id}}</th>
+        <td>{{cidade.nome}}</td>
+        <td>{{cidade.estado}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-outline-dark">Visualizar</button>
+            <button class="btn btn-outline-dark" (click)="selectCidade(cidade)">Editar</button>
+            <button class="btn btn-outline-dark"(click)="deleteCidade(cidade.id)">Excluir</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+

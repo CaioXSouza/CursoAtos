@@ -57,11 +57,12 @@ html, body{
     transition-duration: 150ms;
     transition-timing-function: ease-in-out;
 }
+
 .btn:hover{
     border-width: 4px;
     background-color: transparent;
 }
-a {
+.btn-a {
     text-decoration: none;
     color: white;
 }
@@ -153,5 +154,29 @@ a {
 }
 .contact-sec .section-header{
     color: white;
+    border-bottom: 3px solid #fcf9f9;
+    border-top: 3px solid #fcf9f9;
+    
+}
 
+.footer{
+    background-color: #111111;   
+    text-align: center;
+    padding: 2.5em 0;
+    font-size: 30px;
+}
+.social-list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 2em 0 0;
+    padding: 0;
+}
+.list-item{
+    margin: 0 .5em; 
+}
+.item-link{
+    text-decoration: none;
+    color: white;
+    padding: .5em;
 }
